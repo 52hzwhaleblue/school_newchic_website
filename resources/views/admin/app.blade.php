@@ -28,13 +28,13 @@
 
     @include('admin.partials.header')
     {{-- @include('admin.partials.navbar') --}}
-    @if(Session::get('emp')->type == 'admin')
+    @if (Session::get('emp')->type == 'admin')
         @include('admin.partials.navbar')
     @endif
-    @if(Session::get('emp')->type == 'NV thanh toán')
+    @if (Session::get('emp')->type == 'NV thanh toán')
         @include('admin.partials.navbar_payment')
     @endif
-    @if(Session::get('emp')->type == 'NV kiểm kho')
+    @if (Session::get('emp')->type == 'NV kiểm kho')
         @include('admin.partials.navbar_inventory')
     @endif
     <main class="app-content">
@@ -49,6 +49,10 @@
 
     {{-- script của imported invoice --}}
     @include('admin.imported_invoice.partials.scripts')
+
+    {{-- include scripts product detail | script thêm dòng mới --}}
+    @include('admin.products.partials.scripts')
+
 
     <script src="{{ asset('backend/assets/js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/popper.min.js') }}"></script>

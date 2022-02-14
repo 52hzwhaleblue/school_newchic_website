@@ -8,7 +8,10 @@ use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\Imported_Invoice_Controller;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\InvoiceController;
+use App\Http\Controllers\Admin\ProductDetailController;
 use App\Http\Controllers\Admin\ProviderController;
+
+use App\Http\Controllers\Admin\ProductTypeController;
 use Illuminate\Support\Facades\Auth;
 Route::group(['prefix' => '/'], function () {
     Route::get('login', [LoginController::class,'loginForm'])->name('admin.login.get');
@@ -47,11 +50,56 @@ Route::group(['prefix' => '/'], function () {
             Route::get('/create', [ProductController::class, 'viewCreate'])->
             name('admin.product.create.index');
 
-            Route::post('/create', [ProductController::class, 'createProduct'])->
-            name('admin.product.create');
+            Route::post('/create', [ProductController::class, 'store'])->
+            name('admin.product.store');
 
-            Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->
+            Route::get('/delete/{id}', [ProductController::class, 'delete'])->
             name('admin.product.delete');
+       });
+
+       //--------------------------------------------------------------->
+
+       Route::group(['prefix' => '/product-detail'], function () {
+
+        Route::get('', [ProductDetailController::class, 'loadProductDetail'])->
+        name('admin.product_details.loadProductDetail');
+
+        Route::get('/request/{request1}', [ProductDetailController::class, 'handleRequestSwap'])->
+        name('admin.product.request');
+
+        Route::get('/search', [ProductDetailController::class, 'Search'])->
+        name('admin.product.search');
+
+        Route::get('/create-detail', [ProductDetailController::class, 'ProductDetailView'])->
+        name('admin.product_detail.ProductDetailView');
+
+        Route::post('/create', [ProductDetailController::class, 'createProductDetail'])->
+        name('admin.product.create_detail_view');
+
+        Route::get('/delete/{id}', [ProductDetailController::class, 'deleteProduct'])->
+        name('admin.product.delete');
+   });
+
+        //--------------------------------------------------------------->
+
+        Route::group(['prefix' => '/products_type'], function () {
+
+            Route::get('', [ProductTypeController::class, 'loadProductType'])->
+            name('admin.product_type');
+
+            Route::get('/request/{request1}', [ProductTypeController::class, 'handleRequestSwap'])->
+            name('admin.product_type.request');
+
+            
+
+            Route::get('/create', [ProductTypeController::class, 'viewCreate'])->
+            name('admin.product_type.create.index');
+
+            Route::post('/create', [ProductTypeController::class, 'createProductType'])->
+            name('admin.product_type.create');
+
+            Route::get('/delete/{id}', [ProductTypeController::class, 'deleteProductType'])->
+            name('admin.product_type.delete');
        });
 
         //----------------------------------------------------------------------------------------

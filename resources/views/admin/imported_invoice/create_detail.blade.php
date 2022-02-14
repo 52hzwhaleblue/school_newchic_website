@@ -22,12 +22,15 @@
                 <tr>
                     <th>STT</th>
                     <th>Mã hóa đơn nhập hàng</th>
-                    <th>Mã sản phẩm</th>
+                    <th>Mã sản phẩm/SKU</th>
                     <th>Tên sản phẩm</th>
-                    <th>Số lượng (Kg) </th>
-                    <th>Đơn giá/(Kg)</th>
-                    <th>Đơn vị(Kg)</th>
+
+                    <th>Số lượng nhập</th>
+                    <th>Giá nhập</th>
+                    <th>Giá bán lẻ</th>
+                    <th>Giá bán sỉ</th>
                     <th>Ảnh minh họa</th>
+
                     <th>Action</th>
 
                 </tr>
@@ -41,12 +44,14 @@
                         <td> {{ $item->productID }}</td>
                         <td> {{ $item->productName }}</td>
                         <td> {{ $item->quantity }}</td>
-                        <td> {{ $item->price }}</td>
-                        <td> {{ $item->unit }}</td>
+                        <td> {{ $item->imported_price }}</td>
+                        <td> {{ $item->retail_price }}</td>
+                        <td> {{ $item->wholesale_price }}</td>
+                        <td> <img style="background:white" src="{{ $item->image }}" class="rounded" alt="Ảnh"
+                                width="70" height="70">
+                        </td>
 
-                        <td> <img style="background:white"
-                                src="{{ asset('backend/assets/img/products/' . $item->image) }}" class="rounded"
-                                alt="Ảnh" width="70" height="70"> </td>
+
 
 
                         <td>

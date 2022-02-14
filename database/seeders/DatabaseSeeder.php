@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Provider;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,14 +16,27 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
 
-            User::class,
-            Product::class,
+            // ngời dùng
+            UserSeeder::class,
+
+            // nhà cung cấp
             ProviderSeeder::class,
+
+            // sản phẩm
+            ProductTypeSeeder::class,
+            ProductSeeder::class,
+            ProductDetailSeeder::class,
+
+            // nhân viên
             EmployeeSeeder::class,
+
+            // hóa đơn
             InvoiceSeeder::class,
-            Imported_Invoice_Seeder::class,
-            Imported_Invoice_Detail_Seeder::class,
-            InvoiceDetails::class,
+            InvoiceDetailSeeder::class,
+
+            // nhập hàng
+            // Imported_Invoice_Seeder::class,
+            // Imported_Invoice_Detail_Seeder::class,
         ]);
     }
 }

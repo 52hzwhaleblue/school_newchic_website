@@ -13,17 +13,18 @@ class CreateImportedInvoiceDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('imported_invoice_details', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('importedInvoiceID');
-            $table->string('productID');
-            $table->string('productName');
-            $table->integer('quantity');
-            $table->integer('price');
-            $table->string('unit');
-            $table->string('image');
-            $table->timestamps();
-        });
+        // Schema::create('imported_invoice_details', function (Blueprint $table) {
+        //     $table->string('id')->primary();
+        //     $table->string('importedInvoiceID');
+        //     $table->string('productID');
+        //     $table->string('productName');
+        //     $table->integer('quantity');
+        //     $table->integer('imported_price');
+        //     $table->integer('retail_price');
+        //     $table->integer('wholesale_price');
+        //     $table->string('image');
+        //     $table->timestamps();
+        // });
     }
 
     /**
