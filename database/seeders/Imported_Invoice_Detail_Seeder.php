@@ -21,9 +21,10 @@ class Imported_Invoice_Detail_Seeder extends Seeder
                 'productID'=>'MSP-180120022-(0)',
                 'productName'=>'Dâu tằm',
                 'quantity'=>100,
-                'price'=>30000,
-                'unit'=>'Kg',
-                'image'=>'1.png',
+                'imported_price'=>10000,
+                'retail_price'=>200000,
+                'wholesale_price'=>150000,
+                'image'=>'https://imgaz1.chiccdn.com/thumb/large/oaupload/newchic/images/0A/43/40d12a71-9280-47ae-bd85-51085080f448.jpg?s=702x936',
             ]
         ]);
     }

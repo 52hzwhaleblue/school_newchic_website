@@ -13,16 +13,16 @@ class CreateImportedInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('imported_invoices', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('employeeID');
-            $table->string('providerID');
-            $table->integer('totalPrice');
-            $table->integer('totalQuantity');
-            $table->dateTime('importedDate');
-            $table->integer('status');
-            $table->timestamps();
-        });
+        // Schema::create('imported_invoices', function (Blueprint $table) {
+        //     $table->string('id')->primary();
+        //     $table->string('employeeID');
+        //     $table->string('providerID');
+        //     $table->integer('totalPrice');
+        //     $table->integer('totalQuantity');
+        //     $table->dateTime('importedDate');
+        //     $table->integer('status');
+        //     $table->timestamps();
+        // });
     }
 
     /**

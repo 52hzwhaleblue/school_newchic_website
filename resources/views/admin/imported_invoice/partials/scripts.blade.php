@@ -15,7 +15,7 @@
             var row = '<tr>' +
                 '<td><input type="text" class="form-control" name="importedinvoice_id" id="importedinvoice_id" disabled></td>' +
                 '<td> <select class = "form-select" id="emp_id"  name ="emp_id">   <option> {{ Session::get('empID_session') }}  </option> </select> </td > ' +
-                '<td><select class = "form-select" id="providerID"  name ="providerID"> @foreach ($providers_data as $item)  <option> {{ $item->id }}  </option> @endforeach </select> </td > ' +
+                '<td><select class = "form-select" id="providerID"  name ="providerID"> @foreach ($providerDatas as $item)  <option> {{ $item->id }}  </option> @endforeach </select> </td > ' +
                 '<td><input type="text" class="form-control" name="totalPrice" id="totalPrice"></td>' +
                 '<td><input type="text" class="form-control" name="totalQuantity" id="totalQuantity"></td>' +
                 '<td> <input type="date" id="importedDate" name="importedDate"></td>' +
@@ -78,13 +78,17 @@
 
             var row = '<tr>' +
                 '<td> <input type="text" class="form-control" name="stt" id="stt" disabled></td>' +
-                '<td><select class = "form-select" id="importedinvoice_id"  name ="importedinvoice_id"> @foreach ($imported_inv_data as $item)  <option> {{ $item->id }}  </option> @endforeach </select> </td > ' +
+
                 '<td> <input type="text" class="form-control" name="productID" id="productID" disabled></td>' +
                 '<td> <input type="text" class="form-control" name="productName" id="productName" ></td>' +
                 '<td><input type="text" class="form-control" name="quantity" id="quantity"></td>' +
-                '<td><input type="text" class="form-control" name="price" id="price"></td>' +
-                '<td> <input type="text" id="unit" name="unit"></td>' +
+                '<td><input type="text" class="form-control" name="imported_price" id="imported_price"></td>' +
+                '<td><input type="text" class="form-control" name="retail_price" id="retail_price"></td>' +
+                '<td><input type="text" class="form-control" name="wholesale_price" id="wholesale_price"></td>' +
                 '<td> <input type="file" id="image" name="image"  accept="image/png, image/jpeg, image/jpg"></td>' +
+                '<td><input type="text" class="form-control" name="size" id="size"></td>' +
+                '<td><input type="text" class="form-control" name="color" id="color"></td>' +
+
                 '<td>' + actions + '</td>' +
                 '</tr>';
             $("table").append(row);
@@ -115,7 +119,8 @@
         // Edit row on edit button click
         $(document).on("click", ".edit", function() {
             $(this).parents("tr").find("td:not(:last-child)").each(function() {
-                $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+                $(this).html('<input type="text" class="form-control" value="' + $(this)
+                    .text() + '">');
             });
             $(this).parents("tr").find(".add, .edit").toggle();
             $(".add-new").attr("disabled", "disabled");

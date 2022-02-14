@@ -35,52 +35,21 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>
-                            Mã nhân viên
-                        </th>
-                        <th>
-                            Tên hiển thị
-                        </th>
-                        <th>
-                            Email
-                        </th>
-                        <th></th>
-                        <th>
-                            Họ tên
-                        </th>
-
-                        <th>
-                            Số điện thoại
-                        </th>
-                        <th>
-                            Ảnh
-                        </th>
-                        <th>
-                            Trạng thái
-                        </th>
-
+                        <th>ID</th>
+                        <th> FullName </th>
+                        <th>Email</th>
+                        <th>Phone</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
                             <td> {{ $item->id }}</td>
-                            <td> {{ $item->username }}</td>
-                            <td> {{ $item->email }}</td>
-                            <td></td>
                             <td> {{ $item->fullName }}</td>
-
+                            <td> {{ $item->email }}</td>
                             <td> {{ $item->phone }}</td>
-                            <td> <img style="background:white"
-
-                                    src="{{ asset('backend/assets/img/avaters/' . $item->avatar) }}" class="rounded"
-                                    alt="Ảnh" width="70" height="70"> </td>
-                           @if( $item->status == 1)
-                                <td>  Hoạt động   </td> 
-                            @endif
-                            @if( $item->status == 0)
-                                <td>  Off </td> 
-                            @endif
+                           
+                          
 
                             <td>
                                 <a class="btn btn-success">Edit</a>

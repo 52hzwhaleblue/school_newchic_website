@@ -30,18 +30,16 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootStrap();
 
         // delete  code bellow before migrate
-        $data = DB::table('imported_invoices')->get();
-        View::share('imported_inv_data', $data);
+        // $data = DB::table('imported_invoices')->get();
+        // View::share('imported_inv_data', $data);
 
-        // hóa đơn nhập hàng
-        $imported_inv_data = DB::table('imported_invoices')->get();
-        View::share('imported_inv_data', $imported_inv_data);
+        // // hóa đơn nhập hàng
+        // $imported_inv_data = DB::table('imported_invoices')->get();
+        // View::share('imported_inv_data', $imported_inv_data);
 
-        // chi tiết hóa đơn nhập hàng
-        $imported_inv_details = DB::table('imported_invoice_details')->get();
-        View::share('imported_inv_details', $imported_inv_details);
-
-
+        // // chi tiết hóa đơn nhập hàng
+        // $imported_inv_details = DB::table('imported_invoice_details')->get();
+        // View::share('imported_inv_details', $imported_inv_details);
 
         $empData = DB::table('employees')
         ->select('avatar')
@@ -49,8 +47,26 @@ class AppServiceProvider extends ServiceProvider
         ->get();
         View::share('employees_data', $empData);
 
-        $providerData = DB::table('providers')->get();
-        View::share('providers_data', $providerData);
+        $providerDatas = DB::table('providers')->get();
+        View::share('providerDatas', $providerDatas);
+
+        $productTpeData = DB::table('product_types')->get();
+        View::share('productTpeData', $productTpeData);
+
+        $productDetailDatas = DB::table('product_details')->get();
+        View::share('productDetailDatas', $productDetailDatas);
+
+        // truy vấn tên sản phẩm
+        $productNameDatas = DB::table('products')
+        ->join('product_details','products.id','=','product_details.id')
+        ->select('products.name')
+        ->get();
+        View::share('productNameDatas',$productNameDatas);
+
+        // tách chuỗi tên sản phẩm, màu sắc, kích thước
+        // gán vào SKU 
+       
+       
 
 
     }

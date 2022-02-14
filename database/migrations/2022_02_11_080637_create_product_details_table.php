@@ -14,17 +14,16 @@ class CreateProductDetailsTable extends Migration
     public function up()
     {
         Schema::create('product_details', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->string('id')->primary(); // từng sản phẩm khác nhauphp
             $table->string('productID');
-            $table->string('description');
-         
-            $table->string('sizeID');
-            $table->string('colorID');
-            $table->integer('rate');
-            $table->string('gender');
-            $table->string('imageID');
-
-           
+            $table->string('SKU');
+            $table->string('price');
+            $table->string('quantity');
+            $table->string('size');
+            $table->string('color');
+            $table->string('image');
+            $table->string('typeID');
+            $table->string('providerID');
         });
     }
 

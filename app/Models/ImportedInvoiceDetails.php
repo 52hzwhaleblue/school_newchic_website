@@ -13,8 +13,9 @@ class ImportedInvoiceDetails extends Model
         'productID',
         'productName',
         'quantity',
-        'price',
-        'unit',
+        'imported_price',
+        'retail_price',
+        'wholesale_price',
         'image',
     ];
 }
