@@ -10,15 +10,7 @@ class ProductType extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        'productID',
-        'SKU',
-        'price',
-        'quantity',
-        'size',
-        'color',
-        'image',
-        'typeID',
-        'providerID',
+        'type',
         'status',
     ];
 }

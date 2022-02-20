@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 class UserController extends Controller
 {
     public function myProfile(){
@@ -22,17 +25,90 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->remember_token =$request->token;
+        $user->save();
         
-        
-        if($user->save()){
+        if($user != null){
             return response()->json([
                 'success'=>true,
-            ]);
+            ],200);
         }else{
-            return response()->json([
-                'success'=>false,
-            ]);
+            return response()->json(["success"=>false],201);
         }
+    }
+
+    public function listCart(){
+        return DB::table('carts')->get();
+    }
+
+    public function listAddress($userEmail){
+        return DB::table('addresses')
+        ->join('users', 'addresses.userID', '=', 'users.addressID')
+        ->where('products.id', $userEmail)
+        ->select('addresses.*')
+        ->get();
+    }
+    public function createCart(Request $request){
+        $countCart = Cart::all()->count();
+        $date= Date('Ymd');
+        $randomID = 'EMP' .$date. $countCart;
+
+        $cart = new Cart();
+        
+        $cart->id = $randomID;
+        $cart->userEmail = $request->userEmail;
+        $cart->productSKU = $request->productSKU;
+        $cart->quantity = $request->quantity;
+        $cart->status = $request->status;
+        $cart->save();
+        
+        if($cart != null){
+            return response()->json([
+                'success'=>true,
+            ],200);
+        }else{
+            return response()->json(["success"=>false],201);
+        }
+    }
+
+    public function login(Request $request)
+    {
+        // $this->validate($request, [
+        // 'email' => 'required|email',
+        // 'password' => 'required|min:6'
+        // ]);
+       
+        if (Auth::guard('user')->attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+        ], $request->get('remember'))) {
+          
+            $token = Str::random(length:40);
+            DB ::table('users')
+            ->where ('email',$request->email)
+            ->update([
+                'remember_token' => $token,
+                'status' => 1
+            ]);
+           
+            $users= DB::table('users') 
+            ->where('remember_token',$token)
+            ->select('users.*')
+            ->addSelect (DB ::raw('null as address'))
+            ->get();
+            foreach ($users as $user){
+                $addresses= DB::table('addresses')
+               ->where ('userID',$user->id)
+                ->select('reciver')
+                ->get();
+                $user->address= $addresses;
+            }
+            return json_encode (
+               $users[0],
+            );
+        }else{
+            return response()->json(["message"=>false],201);
+        }
+      
     }
 
     // danh sách nguười dùng đăng ký

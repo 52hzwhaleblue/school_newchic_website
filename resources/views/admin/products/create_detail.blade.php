@@ -14,15 +14,15 @@
             </div>
         </div>
     </div>
-    {{-- form create detail --}}
-    <form action="{{ route('admin.product.create_detail_view') }}" method="POST" role="form"
+    {{-- form create product detail --}}
+    <form action="{{ route('admin.product_detail.store') }}" method="POST" role="form"
         enctype="multipart/form-data">
         @csrf
         <table class="table table-hover table-bordered" id="sampleTable">
             <thead>
                 <tr>
                     <th>STT</th>
-                    <th>Tên sản phẩm</th> {{-- truy vấn từ productID --}}
+                    <th>Mã sản phẩm</th> {{-- truy vấn từ productID --}}
                     <th>SKU</th>
                     <th>Giá </th> {{-- truy vấn tu productID --}}
                     <th>Số lượng</th>
@@ -31,6 +31,7 @@
                     <th>Hình ảnh</th>
                     <th>Loại sản phẩm</th>
                     <th>Nhà cung cấp</th>
+                    <th>Trạng thái</th>
                     <th>Action</th>
 
                 </tr>
@@ -48,9 +49,15 @@
                         <td> {{ $item->color }}</td>
                         <td> <img style="background:white" src="{{ $item->image }}" class="rounded" alt="Ảnh"
                                 width="70" height="70">
+                        </td>
                         <td> {{ $item->typeID }}</td>
                         <td> {{ $item->providerID }}</td>
+                        <td> 
+                            @if ($item->status == 1)
+                            <span class="badge badge-pill badge-success">Còn hàng</span>
+                        @endif
                         </td>
+
                         <td>
                             <button class="add_imp_inv_detail fa fa-plus" type="submit">
                                 <a class="add_imp_inv_detail" title="Add" data-toggle="tooltip"></a>

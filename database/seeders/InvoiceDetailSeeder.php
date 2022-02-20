@@ -18,7 +18,7 @@ class InvoiceDetailSeeder extends Seeder
             [
                 'id' => 1,
                 'invoiceID' => 'in202201221',
-                'productID' => '1',
+                'productID' => '0',
                 'quantity' => '3',
             ],
            

@@ -34,6 +34,9 @@ class DatabaseSeeder extends Seeder
             InvoiceSeeder::class,
             InvoiceDetailSeeder::class,
 
+              // địa chỉ
+             AddressSeeder::class,
+
             // nhập hàng
             // Imported_Invoice_Seeder::class,
             // Imported_Invoice_Detail_Seeder::class,

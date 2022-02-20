@@ -17,82 +17,87 @@
             <li class="breadcrumb-item"><a href="#">Quản lí sản phẩm</a></li>
         </ul>
     </div>
-    <div class="row">
-        <div class="col-sm-4  text-white">
-            <a href="{{ route('admin.product.create.index') }}" class="btn btn-success">Tạo sản phẩm</a>
-
-        </div>
+    <div class="col-sm-4">
+        <button type="button" class="btn btn-info add-new-product"><i class="fa fa-plus"></i> Add
+            New</button>
     </div>
-    <div class="container-fluid">
-        <div class="container mt-3">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>
-                            <h4> Mã sản phẩm</h4>
-                        </th>
-                        <th>
-                            <h4> Tên sản phẩm</h4>
-                        </th>
-                        <th>
-                            <h4>Giá</h4>
-                        </th>
-                        <th>
-                            <h4>Giá so sánh</h4>
-                        </th>
-                        <th>
-                            <h4>Hình ảnh</h4>
-                        </th>
-                        <th>
-                            <h4>Chi tiết</h4>
-                        </th>
-                        <th>
-                            <h4>Trạng thái</h4>
-                        </th>
-                        <th>
-                            <h4>Sửa</h4>
-                        </th>
-                        <th>
-                            <h4>Xóa</h4>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $item)
+
+    {{-- form create product  --}}
+    <form action="{{ route('admin.product.store') }}" method="POST" role="form"  enctype="multipart/form-data">
+        @csrf
+        <div class="container-fluid">
+            <div class="container mt-3">
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td> {{ $item->id }}</td>
-                            <td> {{ $item->name }}</td>
-                            <td> {{ $item->price }}</td>
-                            <td> {{ $item->price_high }}</td>
-
-                            <td>
-                                <img style="background:white" src="{{ $item->image }}" class="rounded" alt="Ảnh"
-                                    width="70" height="70">
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-primary">
-                                    <a style="color:white" href="{{ route('admin.product_detail.ProductDetailView') }}">
-                                        create detail
-                                    </a>
-                                </button>
-                            </td>
-                            <td>
-                                @if ($item->status == 1)
-                                    <span class="badge badge-pill badge-success">Còn hàng</span>
-                                @endif
-                            </td>
-
-                            <td>
-                                <a class="btn btn-success" href="">Edit</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-danger" href="{{ route('admin.product.delete', $item->id) }}">Delete</a>
-                            </td>
+                            <th>
+                                <h5>STT</h5>
+                            </th>
+                            <th>
+                                <h5> Tên sản phẩm</h5>
+                            </th>
+                            <th>
+                                <h5>Giá</h5>
+                            </th>
+                            <th>
+                                <h5>Giá so sánh</h5>
+                            </th>
+                            <th>
+                                <h5>Hình ảnh</h5>
+                            </th>
+                            <th>
+                                <h5>Trạng thái</h5>
+                            </th>
+                            <th>
+                                <h5>Chi tiết</h5>
+                            </th>
+                            <th>
+                                <h5>Action</h5>
+                            </th>
+                           
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            {{ $data->links() }}
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $item)
+                            <tr>
+                                <td> {{ $item->id }}</td>
+                                <td> {{ $item->name }}</td>
+                                <td> {{ $item->price }}</td>
+                                <td> {{ $item->price_high }}</td>
+                                <td>
+                                    <img style="background:white" src="{{ $item->image }}" class="rounded" alt="Ảnh"
+                                        width="70" height="70">
+                                </td>
+                              
+                                <td>
+                                    @if ($item->status == 1)
+                                        <span class="badge badge-pill badge-success">Còn hàng</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        <a style="color:white" href="{{ route('admin.product_detail.ProductDetailView', $item->id)  }}">
+                                            create detail
+                                        </a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="add fa fa-plus" type="submit">
+                                        <a class="add" title="Add" data-toggle="tooltip"> </a>
+                                    </button>
+                                    <a class="edit " title="Edit" data-toggle="tooltip">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                {{ $data->links() }}
+            </div>
         </div>
-    </div>
+    </form>
 @endsection

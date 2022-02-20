@@ -58,8 +58,7 @@ class AppServiceProvider extends ServiceProvider
 
         // truy vấn tên sản phẩm
         $productNameDatas = DB::table('products')
-        ->join('product_details','products.id','=','product_details.id')
-        ->select('products.name')
+        ->orderBy('id','desc')
         ->get();
         View::share('productNameDatas',$productNameDatas);
 

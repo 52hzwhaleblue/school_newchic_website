@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticateable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades;
+use App\Models\Address;
 
 class User extends Authenticateable
 {
@@ -18,15 +19,20 @@ class User extends Authenticateable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'username',
         'fullName',
         'email',
         'password',
-        'address',
         'phone',
+        'addressID',
         'avatar',
         'status',
     ];
+
+    public function address(){
+        return $this->hasMany(Address::class,'id','userID');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

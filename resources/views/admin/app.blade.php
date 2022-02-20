@@ -53,6 +53,9 @@
     {{-- include scripts product detail | script thêm dòng mới --}}
     @include('admin.products.partials.scripts')
 
+       {{-- include scripts product types | script thêm dòng mới --}}
+       @include('admin.product_type.partials.scripts')
+
 
     <script src="{{ asset('backend/assets/js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/popper.min.js') }}"></script>
