@@ -11,10 +11,18 @@ class ProductDetail extends Model
     protected $fillable = [
         'id',
         'productID',
-        'description',
-        'type',
-        'rate',
-        'gender',
-        
+        'SKU',
+        'price',
+        'quantity',
+        'size',
+        'color',
+        'image',
+        'typeID',
+        'providerID',
+        'status',
     ];
+
+    public function products(){
+        return $this->belongsTo(Product::class,'productID','id');
+    }
 }

@@ -24,7 +24,6 @@
                     <th>Ngày nhập hàng</th>
                     <th>Trạng thái</th>
                     <th>Chi tiết</th>
-
                 </tr>
             </thead>
             <tbody>

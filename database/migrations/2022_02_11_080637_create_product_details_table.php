@@ -17,13 +17,15 @@ class CreateProductDetailsTable extends Migration
             $table->string('id')->primary(); // từng sản phẩm khác nhauphp
             $table->string('productID');
             $table->string('SKU');
-            $table->string('price');
-            $table->string('quantity');
+            $table->integer('price');
+            $table->integer('quantity');
             $table->string('size');
             $table->string('color');
             $table->string('image');
             $table->string('typeID');
             $table->string('providerID');
+            $table->integer('status');
+            $table->timestamps();
         });
     }
 

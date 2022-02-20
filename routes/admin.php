@@ -34,6 +34,9 @@ Route::group(['prefix' => '/'], function () {
        Route::get('/account/profile', [AccountController::class, 'viewProfile'])->
        name('admin.account.profile');
 
+       Route::get('/address', [AccountController::class, 'loadAddress'])->
+       name('admin.address');
+
        //--------------------------------------------------------------->
 
        Route::group(['prefix' => '/products'], function () {
@@ -48,7 +51,7 @@ Route::group(['prefix' => '/'], function () {
             name('admin.product.search');
 
             Route::get('/create', [ProductController::class, 'viewCreate'])->
-            name('admin.product.create.index');
+            name('admin.product.index');
 
             Route::post('/create', [ProductController::class, 'store'])->
             name('admin.product.store');
@@ -73,8 +76,8 @@ Route::group(['prefix' => '/'], function () {
         Route::get('/create-detail', [ProductDetailController::class, 'ProductDetailView'])->
         name('admin.product_detail.ProductDetailView');
 
-        Route::post('/create', [ProductDetailController::class, 'createProductDetail'])->
-        name('admin.product.create_detail_view');
+        Route::post('/create', [ProductDetailController::class, 'store'])->
+        name('admin.product_detail.store');
 
         Route::get('/delete/{id}', [ProductDetailController::class, 'deleteProduct'])->
         name('admin.product.delete');
@@ -82,24 +85,19 @@ Route::group(['prefix' => '/'], function () {
 
         //--------------------------------------------------------------->
 
-        Route::group(['prefix' => '/products_type'], function () {
+        Route::group(['prefix' => '/product-types'], function () {
 
-            Route::get('', [ProductTypeController::class, 'loadProductType'])->
-            name('admin.product_type');
+          Route::get('', [ProductTypeController::class, 'loadProductType'])->
+          name('admin.product_types.index');
 
-            Route::get('/request/{request1}', [ProductTypeController::class, 'handleRequestSwap'])->
-            name('admin.product_type.request');
+          Route::get('/create-product-type', [ProductTypeController::class, 'productTypeView'])->
+          name('admin.product_types.productTypeView');
 
-            
+          Route::post('/create-product-type', [ProductTypeController::class, 'store'])->
+          name('admin.product_types.store');
 
-            Route::get('/create', [ProductTypeController::class, 'viewCreate'])->
-            name('admin.product_type.create.index');
-
-            Route::post('/create', [ProductTypeController::class, 'createProductType'])->
-            name('admin.product_type.create');
-
-            Route::get('/delete/{id}', [ProductTypeController::class, 'deleteProductType'])->
-            name('admin.product_type.delete');
+          Route::get('/delete/{id}', [ProductTypeController::class, 'delete'])->
+          name('admin.product_types.delete');
        });
 
         //----------------------------------------------------------------------------------------

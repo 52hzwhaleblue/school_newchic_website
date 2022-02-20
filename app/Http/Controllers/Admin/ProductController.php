@@ -9,7 +9,7 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function listProductsAPI(){
+    public function listProducts(){
 
        return DB::table('products')->get();
     }
@@ -22,13 +22,13 @@ class ProductController extends Controller
   
     public function viewCreate(){
         $data =DB::table('products')->paginate(4);
-        return view('admin.products.create',compact('data'));
+        return view('admin.products.index',compact('data'));
     }
     
     public function store(Request $request){
         $countPrd = Product::all()->count();
-        $date = Date('Y-m-d');
-        $randomID = 'MSP-'.$date .'-' . $countPrd.'-';
+       
+        $randomID = 'MSP-'.'('.$countPrd.')';
         $products = new Product;
 
         $products->id = $randomID;

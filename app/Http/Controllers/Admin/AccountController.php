@@ -16,6 +16,10 @@ class AccountController extends Controller
         $data =DB::table('users')->paginate(3);
         return view('admin.accounts.index',compact('data'));
     }
+    public function loadAddress(){
+        $data =DB::table('addresses')->paginate(3);
+        return view('admin.address.index',compact('data'));
+    }
     public function loadAccountAdmin(){
         $data =DB::table('users')->where('isAdmin',1)->paginate(3);
         return view('admin.accounts.index',compact('data'));

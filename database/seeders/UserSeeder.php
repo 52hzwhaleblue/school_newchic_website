@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('Minhlong@1902'),
                 'email' => 'josephminhlong@gmail.com',
                 'fullName' => 'Nguyễn Vũ Minh Long',
-                'address' => 'TP Hồ Chí minh',
+                'addressID' => '1',
                 'phone' => '0123456789'
             ],
         ]);

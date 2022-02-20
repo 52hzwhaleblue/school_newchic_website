@@ -16,7 +16,7 @@ class ProductDetailSeeder extends Seeder
     {
         DB::table('product_details')->insert([
             [  
-            "id"=> '1',
+            "id"=> '0',
             "productID"=> '1', // để truy vấn ra prodcut name làm chủ yếu
             "SKU"=> 'ATN-Red-XXL',
             "price"=> 442,
@@ -26,6 +26,7 @@ class ProductDetailSeeder extends Seeder
             "image"=>  'https://imgaz1.chiccdn.com/thumb/large/oaupload/newchic/images/0A/43/40d12a71-9280-47ae-bd85-51085080f448.jpg?s=702x936',
             "typeID"=> 'LSP-AOTHUN',
             "providerID"=> 'NCC000',
+            "status"=> '1',
 
             ],
         ]);

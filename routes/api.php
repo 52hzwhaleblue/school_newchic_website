@@ -22,17 +22,34 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/user-api', [UserController::class, 'register'])->
+Route::post('/register', [UserController::class, 'register'])->
 name('user.register');
 
-Route::get('/user-api', [UserController::class, 'listUser'])->
+Route::post('/login', [UserController::class, 'login'])->
+name('user.login');
+
+Route::get('/users', [UserController::class, 'listUser'])->
 name('user.listUser');
 
-Route::get('/product-type-api', [ProductTypeController::class, 'listProductType'])->
+Route::get('/product-types', [ProductTypeController::class, 'listProductType'])->
 name('products.listProductType');
 
-Route::get('/product-api', [ProductController::class, 'listProductsAPI'])->
+Route::get('/products', [ProductController::class, 'listProducts'])->
 name('products.list_products_api');
 
-Route::get('/product-api', [ProductDetailController::class, 'listProductsAPI'])->
+Route::get('/product-details', [ProductDetailController::class, 'listProductDetails'])->
 name('products.list_products_api');
+
+Route::get('/product-details/{productID}', [ProductDetailController::class, 'singleProductDetails'])->name('products.list_products');
+
+Route::get('getProductDetailName/{productID}',[ProductDetailController::class, 'getProductDetailName']);
+Route::get('getProductDetailPrice/{productID}',[ProductDetailController::class, 'getProductDetailPrice']);
+Route::get('getProductDetailImage/{productID}',[ProductDetailController::class, 'getProductDetailImage']);
+Route::get('getProductDetailColor/{productSKU}',[ProductDetailController::class, 'getProductDetailColor']);
+Route::get('getProductDetailSKU/{productSKU}',[ProductDetailController::class, 'getProductDetailSKU']);
+Route::get('getProductDetailSize/{productID}',[ProductDetailController::class, 'getProductDetailSize']);
+
+Route::post('/create-cart', [UserController::class, 'createCart'])->name('user.createCart');
+Route::get('/cart', [UserController::class, 'listCart'])->name('user.listCart');
+
+Route::get('/address', [UserController::class, 'listAddress'])->name('user.listAddress');

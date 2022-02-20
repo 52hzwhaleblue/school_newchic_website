@@ -12,8 +12,12 @@ class Product extends Model
         'id',
         'name',
         'price',
-        'price',
+        'price_high',
         'image',
         'status',
     ];
+
+    public function product_details(){
+        return $this->hasMany(ProductDetail::class,'id','productID');
+    }
 }

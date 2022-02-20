@@ -41,8 +41,6 @@ class ForeignKey extends Migration
         Schema::table('product_details', function (Blueprint $table) {
             $table->foreign('typeID')->references('id')->on('product_types');
             $table->foreign('providerID')->references('id')->on('providers');
-            $table->foreign('productID')->references('id')->on('products');
-            
         });
     }
 
