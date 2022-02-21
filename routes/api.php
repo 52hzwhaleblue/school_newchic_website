@@ -50,6 +50,7 @@ Route::get('getProductDetailSKU/{productSKU}',[ProductDetailController::class, '
 Route::get('getProductDetailSize/{productID}',[ProductDetailController::class, 'getProductDetailSize']);
 
 Route::post('/create-cart', [UserController::class, 'createCart'])->name('user.createCart');
-Route::get('/cart', [UserController::class, 'listCart'])->name('user.listCart');
+Route::get('/cart/{productSKU}', [UserController::class, 'listCart'])->name('user.listCart');
 
-Route::get('/address', [UserController::class, 'listAddress'])->name('user.listAddress');
+Route::get('/getUserID/{userEmail}', [UserController::class, 'getUserID'])->name('user.getUserID');
+Route::get('/address/{userID}', [UserController::class, 'listAddress'])->name('user.listAddress');

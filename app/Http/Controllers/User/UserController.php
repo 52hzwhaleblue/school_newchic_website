@@ -36,15 +36,27 @@ class UserController extends Controller
         }
     }
 
-    public function listCart(){
-        return DB::table('carts')->get();
+    public function listCart($productSKU){
+        return DB::table('carts')
+        ->join('product_details', 'carts.productSKU', '=', 'product_details.SKU')
+        ->where('product_details.SKU', $productSKU)
+        ->select('product_details.*')
+        ->get();
     }
 
-    public function listAddress($userEmail){
+    public function listAddress($userID){
         return DB::table('addresses')
-        ->join('users', 'addresses.userID', '=', 'users.addressID')
-        ->where('products.id', $userEmail)
+        ->join('users', 'addresses.userID', '=', 'users.id')
+        ->where('users.id', $userID)
         ->select('addresses.*')
+        ->get();
+    }
+
+    
+    public function getUserID($userEmail){
+        return DB::table('users')
+        ->where('users.email', $userEmail)
+        ->select('users.id')
         ->get();
     }
     public function createCart(Request $request){
